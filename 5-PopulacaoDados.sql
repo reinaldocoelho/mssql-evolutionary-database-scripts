@@ -1,11 +1,11 @@
 /*
-Descricao  : Contém os dados iniciais para o Banco, na tabela específica.
+Descricao  : Contï¿½m os dados iniciais para o Banco, na tabela especï¿½fica.
 */
 
 SET NOCOUNT ON
 
 -------------------------------------------------------------------
--- INSERTS DE REGISTROS ( Informação Inicial )
+-- INSERTS DE REGISTROS ( Informaï¿½ï¿½o Inicial )
 -------------------------------------------------------------------
 
 -- Valida se existe a TABELA antes de inserir os registros
@@ -13,7 +13,7 @@ SET NOCOUNT ON
 IF EXISTS (SELECT * FROM [BANCO].dbo.sysobjects WHERE type = 'U' AND name = 'TABELA')
 BEGIN
 
-    -- Desativa o campo Autonumeração para evitar erros
+    -- Desativa o campo Autonumeraï¿½ï¿½o para evitar erros
     -----------------------------------------------------------------------------
     SET IDENTITY_INSERT [BANCO].dbo.[TABELA] ON
 
@@ -21,7 +21,7 @@ BEGIN
     -----------------------------------------------------------------------------
     ALTER TABLE [BANCO].dbo.[TABELA] DISABLE TRIGGER ALL
 
-    -- Valida se existe o REGISTRO, caso não exista, cria o mesmo
+    -- Valida se existe o REGISTRO, caso nï¿½o exista, cria o mesmo
     ------------------------------------------------------------------------------------
     IF NOT EXISTS( SELECT 1 FROM [BANCO].dbo.[TABELA] WHERE <ID> = <VALOR>  )
     BEGIN
@@ -34,7 +34,7 @@ BEGIN
     
     END
 
-    -- Ativa o campo Autonumeração para evitar erros
+    -- Ativa o campo Autonumeraï¿½ï¿½o para evitar erros
     -----------------------------------------------------------------------------
     ALTER TABLE [BANCO].dbo.[TABELA] ENABLE TRIGGER ALL
 
@@ -45,7 +45,7 @@ BEGIN
 END
 
 -------------------------------------------------------------------
--- UPDATE DE REGISTROS ( Correção de Dados )
+-- UPDATE DE REGISTROS ( Correï¿½ï¿½o de Dados )
 -------------------------------------------------------------------
 
 -- Valida se existe a TABELA e o CAMPO antes de atualizar os registros
@@ -66,14 +66,14 @@ BEGIN
     WHERE 
         [ID] = [VALORID]
 
-    -- Ativa o campo Autonumeração para evitar erros
+    -- Ativa o campo Autonumeraï¿½ï¿½o para evitar erros
     -----------------------------------------------------------------------------
     ALTER TABLE [BANCO].dbo.[TABELA] ENABLE TRIGGER ALL
 
 END
 
 -------------------------------------------------------------------
--- Exclusão DE REGISTROS ( Correção de Dados )
+-- Exclusï¿½o DE REGISTROS ( Correï¿½ï¿½o de Dados )
 -------------------------------------------------------------------
 
 -- Valida se existe a TABELA antes de inserir os registros
@@ -101,7 +101,7 @@ BEGIN
     IF EXISTS(SELECT 1 FROM [BANCO].dbo.[TABELA] WHERE [CAMPO] = [VALOR])
     BEGIN
 
-        --Essa página está obsoleta e foi retirada do Supervisor
+        --Essa pï¿½gina estï¿½ obsoleta e foi retirada do Supervisor
         ------------------------------------------------------------
         DELETE FROM
             [BANCO].dbo.'TABELA'
@@ -121,7 +121,7 @@ BEGIN
 
     END
 
-    -- Ativa o campo Autonumeração para evitar erros
+    -- Ativa o campo Autonumeraï¿½ï¿½o para evitar erros
     -----------------------------------------------------------------------------
     ALTER TABLE [BANCO].dbo.[TABELA] ENABLE TRIGGER ALL
 
@@ -136,19 +136,19 @@ SET NOCOUNT OFF
 -- Para Obter a Listagem dos Registros a partir de uma tabela existente, pode-se 
 -- utilizar o script abaixo, adaptando-o para sua necessidade.
 -- 
--- Em casos de cargas iniciais de grandes volumes, o script abaixo é aconselhado.
+-- Em casos de cargas iniciais de grandes volumes, o script abaixo ï¿½ aconselhado.
 ------------------------------------------------------------------------------------
 /*
 SELECT 
 '
-IF NOT EXISTS( SELECT 1 FROM DTCC.dbo.canais_comunicacao WHERE id_canal_comunicacao = ' + CONVERT(VARCHAR, id_canal_comunicacao) + ' )
+IF NOT EXISTS( SELECT 1 FROM <TABLE> WHERE id = ' + CONVERT(VARCHAR, id) + ' )
 BEGIN
 
-    INSERT INTO DTCC.dbo.canais_comunicacao ( id_canal_comunicacao, nome, descricao, flag_canal, ind_ordem )
-    VALUES( ' + CONVERT(VARCHAR, id_canal_comunicacao) + ', ''' + nome + ''', ''' + descricao + ''', ' + CONVERT(VARCHAR, flag_canal) + ', ' + CONVERT(VARCHAR, ind_ordem) + ' )
+    INSERT INTO <TABLE> ( id, name )
+    VALUES( ' + CONVERT(VARCHAR, id) + ', ''' + name + '''' )
 
 END
 '
 FROM 
-    DTCC.dbo.canais_comunicacao
+    <TABLE>
 */

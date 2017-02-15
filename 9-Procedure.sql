@@ -7,13 +7,13 @@ GO
 
 /*
 Entrada:
-        @id_site          int             - identificador do site em que a conta será cadastrada
-        @dat_inicio       datetime        - data de inicio da busca de informações
-        @dat_fim          datetime        - data de final da busca de informações
+        @id_site          int             - identificador do site em que a conta serï¿½ cadastrada
+        @dat_inicio       datetime        - data de inicio da busca de informaï¿½ï¿½es
+        @dat_fim          datetime        - data de final da busca de informaï¿½ï¿½es
                       
-Saída:
+Saï¿½da:
  
-Descrição : Procedure criada para ...
+Descriï¿½ï¿½o : Procedure criada para ...
  
 Dependentes: 
 */
@@ -28,12 +28,12 @@ BEGIN
     SET NOCOUNT ON
 
     ------------------------------------------------------------------------------------------------------------------------------------------------
-    -- fçsljkfsdjklfsjk
+    -- fï¿½sljkfsdjklfsjk
     ------------------------------------------------------------------------------------------------------------------------------------------------
     IF ( @xyz <> 0 ) 
     BEGIN
 
-        RAISERROR( 'ssdçfkskçfsf', 16, 1)
+        RAISERROR( 'error message', 16, 1)
         RETURN
 
     END
